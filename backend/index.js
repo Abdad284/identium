@@ -30,7 +30,7 @@ app.post('/register', async (req, res) => {
 
   res.json({ 
     message: 'Registration successful',
-    verification_link: `https://identium-frontend.onrender.com/verify.html?code=${verification_code}`
+    verification_link: `https://identium.onrender.com/verify.html?code=${verification_code}`
   })
 })
 

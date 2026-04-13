@@ -38,7 +38,7 @@ async function lookupIdentity() {
 
 function populateDashboard(data) {
   const { user, verification } = data;
-  const verifyLink = `https://identium-frontend.onrender.com/verify.html?code=${verification.verification_code}`;
+  const verifyLink = `https://identium.onrender.com/verify.html?code=${verification.verification_code}`;
   currentVerifyLink = verifyLink;
 
   const date = new Date(user.created_at).toLocaleDateString('en-GB', {
