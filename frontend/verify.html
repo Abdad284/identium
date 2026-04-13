@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IDentium — Verify Identity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/verify.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">ID<span>entium</span></a>
+  </nav>
+
+  <div class="page">
+    <div class="verify-container">
+
+      <!-- LOADING -->
+      <div class="loading-state" id="loading-state">
+        <div class="spinner"></div>
+        <p>Verifying identity on XION blockchain...</p>
+      </div>
+
+      <!-- VERIFIED -->
+      <div class="verified-state" id="verified-state">
+        <div class="verified-badge">✅ Identity Verified</div>
+        <div class="id-card">
+          <div class="id-card-header">
+            <div class="id-logo">IDentium</div>
+            <div class="blockchain-tag">⛓ XION Blockchain</div>
+          </div>
+          <div class="id-avatar">👤</div>
+          <div class="id-name" id="v-name">—</div>
+          <div class="id-details">
+            <div class="id-detail">
+              <div class="id-detail-label">Nationality</div>
+              <div class="id-detail-value" id="v-nationality">—</div>
+            </div>
+            <div class="id-detail">
+              <div class="id-detail-label">Status</div>
+              <div class="id-detail-value verified-status" id="v-status">—</div>
+            </div>
+            <div class="id-detail">
+              <div class="id-detail-label">Verified On</div>
+              <div class="id-detail-value" id="v-date">—</div>
+            </div>
+            <div class="id-detail">
+              <div class="id-detail-label">KYC Ready</div>
+              <div class="id-detail-value verified-status">✓ Yes</div>
+            </div>
+          </div>
+          <div class="id-hash" id="v-hash">Loading blockchain reference...</div>
+        </div>
+      </div>
+
+      <!-- NOT FOUND -->
+      <div class="notfound-state" id="notfound-state">
+        <div class="notfound-icon">❌</div>
+        <h2>Identity Not Found</h2>
+        <p>This verification link is invalid or has not been registered yet. Please check the link or create a new digital identity.</p>
+        <a href="register.html" class="btn">Create Your Digital ID</a>
+        <div class="manual-section">
+          <p>Have a verification code? Enter it below:</p>
+          <div class="manual-input-row">
+            <input type="text" id="manual-code" placeholder="Paste verification code..."/>
+            <button onclick="manualVerify()">Verify</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/verify.js"></script>
+</body>
+</html>

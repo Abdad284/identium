@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IDentium — My Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">ID<span>entium</span></a>
+    <a href="index.html" class="back-link">← Home</a>
+  </nav>
+
+  <!-- LOOKUP SECTION -->
+  <div class="page" id="lookup-page">
+    <div class="lookup-container">
+      <div class="page-tag">Your Identity</div>
+      <h1>Find Your<br/>Digital ID</h1>
+      <p class="page-sub">Enter your email address to retrieve your digital identity and verification link.</p>
+
+      <div class="lookup-form">
+        <div class="form-group">
+          <label>Email Address <span>*</span></label>
+          <input type="email" id="lookup-email" placeholder="your@email.com"/>
+        </div>
+        <div class="error-msg" id="lookup-error"></div>
+        <button class="submit-btn" id="lookup-btn" onclick="lookupIdentity()">
+          🔍 Find My Identity
+        </button>
+      </div>
+
+      <p class="note">Don't have an identity yet? <a href="register.html">Create one here →</a></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION -->
+  <div class="dashboard" id="dashboard-page" style="display:none;">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">ID<span>entium</span></div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active">
+          <span class="nav-icon">🪪</span>
+          My Identity
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🔗</span>
+          Share & Verify
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🛡️</span>
+          Security
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          Settings
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="verified-badge-side">✓ Blockchain Verified</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- HEADER -->
+      <div class="dashboard-header">
+        <div>
+          <div class="welcome-text">Welcome back,</div>
+          <h2 class="user-name" id="dash-name">—</h2>
+        </div>
+        <div class="header-badge">
+          <span>🟢</span> Identity Active
+        </div>
+      </div>
+
+      <!-- STATS ROW -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card-icon">⛓️</div>
+          <div class="stat-card-value">XION</div>
+          <div class="stat-card-label">Blockchain</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">✅</div>
+          <div class="stat-card-value">Verified</div>
+          <div class="stat-card-label">KYC Status</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🌍</div>
+          <div class="stat-card-value" id="dash-nationality">—</div>
+          <div class="stat-card-label">Nationality</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">📅</div>
+          <div class="stat-card-value" id="dash-date">—</div>
+          <div class="stat-card-label">Registered</div>
+        </div>
+      </div>
+
+      <!-- ID CARD + SHARE -->
+      <div class="content-grid">
+
+        <!-- DIGITAL ID CARD -->
+        <div class="card">
+          <div class="card-title">Your Digital ID Card</div>
+          <div class="id-card">
+            <div class="id-card-header">
+              <div class="id-logo-text">IDentium</div>
+              <div class="id-chip">⬛ XION</div>
+            </div>
+            <div class="id-avatar">👤</div>
+            <div class="id-full-name" id="card-name">—</div>
+            <div class="id-meta">
+              <div class="id-meta-item">
+                <div class="id-meta-label">NATIONALITY</div>
+                <div class="id-meta-value" id="card-nationality">—</div>
+              </div>
+              <div class="id-meta-item">
+                <div class="id-meta-label">STATUS</div>
+                <div class="id-meta-value" style="color:#44cc88;">✓ Verified</div>
+              </div>
+              <div class="id-meta-item">
+                <div class="id-meta-label">DATE OF BIRTH</div>
+                <div class="id-meta-value" id="card-dob">—</div>
+              </div>
+              <div class="id-meta-item">
+                <div class="id-meta-label">KYC READY</div>
+                <div class="id-meta-value" style="color:#44cc88;">✓ Yes</div>
+              </div>
+            </div>
+            <div class="id-blockchain-ref" id="card-hash">Secured on XION Blockchain</div>
+          </div>
+        </div>
+
+        <!-- SHARE SECTION -->
+        <div class="card">
+          <div class="card-title">Share Your Verification Link</div>
+          <p class="card-sub">Anyone with this link can instantly verify your identity — banks, employers, schools, and more.</p>
+
+          <div class="verify-link-box">
+            <div class="verify-link-text" id="dash-verify-link">—</div>
+          </div>
+
+          <div class="share-actions">
+            <button class="share-btn primary" onclick="copyLink()">
+              📋 Copy Link
+            </button>
+            <button class="share-btn secondary" onclick="shareWhatsApp()">
+              📱 Share on WhatsApp
+            </button>
+          </div>
+
+          <div class="use-cases">
+            <div class="use-case-title">Use your ID for:</div>
+            <div class="use-case-tags">
+              <span class="tag">🏦 Banking KYC</span>
+              <span class="tag">💼 Employment</span>
+              <span class="tag">🎓 Education</span>
+              <span class="tag">🌍 Cross-Border</span>
+              <span class="tag">📱 Online Platforms</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ACTIVITY -->
+      <div class="card full-width">
+        <div class="card-title">Identity Activity</div>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-icon">🔐</div>
+            <div class="activity-content">
+              <div class="activity-title">Identity Created & Secured</div>
+              <div class="activity-sub">Your identity was stored on XION blockchain</div>
+            </div>
+            <div class="activity-time" id="activity-date">—</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">✅</div>
+            <div class="activity-content">
+              <div class="activity-title">KYC Verification Complete</div>
+              <div class="activity-sub">Your identity is ready for financial services</div>
+            </div>
+            <div class="activity-time">Active</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">🌍</div>
+            <div class="activity-content">
+              <div class="activity-title">Cross-Border Access Enabled</div>
+              <div class="activity-sub">Your ID works across countries and platforms</div>
+            </div>
+            <div class="activity-time">Active</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
