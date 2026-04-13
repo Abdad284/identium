@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IDentium — Business Verification Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/business.css"/>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">ID<span>entium</span></a>
+    <div class="nav-right">
+      <span class="nav-badge">🏢 Business Portal</span>
+      <a href="index.html" class="back-link">← Home</a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="portal-hero">
+      <div class="portal-tag">For Banks · Employers · Schools · Platforms</div>
+      <h1>Verify Any Identity<br/><em>Instantly</em></h1>
+      <p>Paste a verification link or code below to instantly confirm someone's digital identity — powered by blockchain.</p>
+    </div>
+
+    <!-- VERIFY FORM -->
+    <div class="verify-card" id="verify-form">
+      <div class="card-label">Enter Verification Details</div>
+
+      <div class="input-group">
+        <input type="text" id="verify-input" placeholder="Paste verification link or code here..."/>
+        <button onclick="verifyIdentity()" id="verify-btn">
+          🔍 Verify Now
+        </button>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <div class="divider">
+        <span>What you can paste</span>
+      </div>
+
+      <div class="examples">
+        <div class="example-item">
+          <div class="example-icon">🔗</div>
+          <div>
+            <div class="example-title">Full verification link</div>
+            <div class="example-sub">https://identium.onrender.com/verify.html?code=...</div>
+          </div>
+        </div>
+        <div class="example-item">
+          <div class="example-icon">🔑</div>
+          <div>
+            <div class="example-title">Verification code</div>
+            <div class="example-sub">da4c4766-eb75-4fdf-838b-2d9545a72be2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading-card" id="loading-card" style="display:none;">
+      <div class="spinner"></div>
+      <p>Checking XION blockchain...</p>
+    </div>
+
+    <!-- VERIFIED RESULT -->
+    <div class="result-card verified" id="verified-card" style="display:none;">
+      <div class="result-header">
+        <div class="result-status verified-status">
+          <span class="status-icon">✅</span>
+          <div>
+            <div class="status-title">Identity Verified</div>
+            <div class="status-sub">This identity is authentic and blockchain-secured</div>
+          </div>
+        </div>
+        <button class="reset-btn" onclick="resetForm()">Verify Another</button>
+      </div>
+
+      <div class="identity-display">
+        <div class="identity-avatar">👤</div>
+        <div class="identity-info">
+          <div class="identity-name" id="result-name">—</div>
+          <div class="identity-meta" id="result-meta">—</div>
+        </div>
+        <div class="identity-badge">✓ VERIFIED</div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-item">
+          <div class="detail-label">NATIONALITY</div>
+          <div class="detail-value" id="result-nationality">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">KYC STATUS</div>
+          <div class="detail-value success">✓ KYC Ready</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">VERIFICATION STATUS</div>
+          <div class="detail-value success">✓ Active</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">BLOCKCHAIN</div>
+          <div class="detail-value">⛓ XION Network</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">VERIFIED ON</div>
+          <div class="detail-value" id="result-date">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">FRAUD RISK</div>
+          <div class="detail-value success">✓ Low Risk</div>
+        </div>
+      </div>
+
+      <div class="blockchain-ref" id="result-hash">—</div>
+
+      <div class="use-actions">
+        <div class="use-title">This identity is cleared for:</div>
+        <div class="use-tags">
+          <span class="use-tag approved">✓ Banking KYC</span>
+          <span class="use-tag approved">✓ Employment</span>
+          <span class="use-tag approved">✓ Education</span>
+          <span class="use-tag approved">✓ Loan Applications</span>
+          <span class="use-tag approved">✓ Cross-Border</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOT FOUND RESULT -->
+    <div class="result-card notfound" id="notfound-card" style="display:none;">
+      <div class="result-status notfound-status">
+        <span class="status-icon">❌</span>
+        <div>
+          <div class="status-title">Identity Not Found</div>
+          <div class="status-sub">This code does not match any registered identity</div>
+        </div>
+      </div>
+      <p class="notfound-advice">The verification link or code may be invalid, expired, or tampered with. Do not accept this identity for sensitive transactions.</p>
+      <button class="reset-btn" onclick="resetForm()">Try Again</button>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features-section">
+      <div class="features-title">Why businesses trust IDentium</div>
+      <div class="features-grid">
+        <div class="feat">
+          <div class="feat-icon">⛓️</div>
+          <div class="feat-title">Blockchain Secured</div>
+          <div class="feat-desc">Every identity is immutably stored on XION blockchain — impossible to forge or alter.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">⚡</div>
+          <div class="feat-title">Instant Verification</div>
+          <div class="feat-desc">Verify any identity in under 3 seconds — no paperwork, no delays, no manual checks.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🌍</div>
+          <div class="feat-title">Cross-Border Ready</div>
+          <div class="feat-desc">Works across countries — verify Nigerian identities from anywhere in the world.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🔒</div>
+          <div class="feat-title">Privacy Compliant</div>
+          <div class="feat-desc">Only verified status is shared — sensitive data stays encrypted and user-controlled.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="logo">ID<span>entium</span></div>
+    <div>Business Verification Portal · Powered by XION Blockchain</div>
+    <div>© 2026 IDentium</div>
+  </footer>
+
+  <script src="js/business.js"></script>
+</body>

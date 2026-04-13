@@ -1,3 +1,4 @@
+const BACKEND_URL = 'https://identium-backend.onrender.com';
 let verifyLink = '';
 
 async function submitForm() {
@@ -9,10 +10,8 @@ async function submitForm() {
   const errorMsg = document.getElementById('error-msg');
   const btn = document.getElementById('submit-btn');
 
-  // Reset error
   errorMsg.style.display = 'none';
 
-  // Validate
   if (!full_name || !email || !date_of_birth || !nationality) {
     errorMsg.textContent = 'Please fill in all required fields marked with *.';
     errorMsg.style.display = 'block';
@@ -25,12 +24,11 @@ async function submitForm() {
     return;
   }
 
-  // Submit
   btn.disabled = true;
   btn.textContent = '⏳ Securing on blockchain...';
 
   try {
-    const response = await fetch('https://identium-backend.onrender.com/register', {
+    const response = await fetch(`${BACKEND_URL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ full_name, email, phone, date_of_birth, nationality })
@@ -42,6 +40,10 @@ async function submitForm() {
 
     verifyLink = data.verification_link;
     document.getElementById('verify-link-display').textContent = verifyLink;
+
+    // Generate QR code
+    generateQRCode(verifyLink);
+
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('success-box').style.display = 'block';
 
@@ -51,6 +53,15 @@ async function submitForm() {
     btn.disabled = false;
     btn.textContent = '🔐 Create My Digital Identity';
   }
+}
+
+function generateQRCode(link) {
+  const qrContainer = document.getElementById('qr-code');
+  if (!qrContainer) return;
+
+  // Use QR code API
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(link)}&bgcolor=141414&color=c9a84c&margin=10`;
+  qrContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:8px;border:1px solid rgba(201,168,76,0.3);"/>`;
 }
 
 function copyLink() {

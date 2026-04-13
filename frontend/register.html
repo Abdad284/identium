@@ -20,7 +20,7 @@
     <div id="form-section">
       <div class="page-tag">Step 01 of 01</div>
       <h1>Create Your<br/>Digital ID</h1>
-      <p class="page-sub">Fill in your details below. Your identity will be secured on the XION blockchain and you'll receive a unique verification link.</p>
+      <p class="page-sub">Fill in your details below. Your identity will be secured on the XION blockchain and you'll receive a unique verification link and QR code.</p>
 
       <div class="section-label">Personal Information</div>
 
@@ -79,17 +79,32 @@
     <div class="success-box" id="success-box">
       <div class="success-icon">✅</div>
       <h2>Identity Created!</h2>
-      <p>Your digital identity has been secured on the XION blockchain. Share your verification link with banks, employers, or any platform.</p>
+      <p>Your digital identity has been secured on the XION blockchain. Share your verification link or QR code with banks, employers, or any platform.</p>
+
+      <!-- QR CODE -->
+      <div class="qr-section">
+        <div class="qr-label">Your Verification QR Code</div>
+        <div id="qr-code" class="qr-container">
+          <div class="qr-loading">Generating QR Code...</div>
+        </div>
+        <p class="qr-note">Anyone can scan this QR code to instantly verify your identity</p>
+      </div>
+
+      <!-- LINK -->
       <div class="verify-link-box">
         <div class="verify-link-text" id="verify-link-display"></div>
         <button class="copy-btn" onclick="copyLink()">Copy</button>
       </div>
-      <p class="save-note">Save this link — it's your permanent identity verification URL.</p>
-      <a href="index.html" class="home-link">← Back to Home</a>
+
+      <p class="save-note">Save this link and QR code — they are your permanent identity verification credentials.</p>
+
+      <div class="success-actions">
+        <a href="dashboard.html" class="btn-dashboard">View My Dashboard →</a>
+        <a href="index.html" class="home-link">← Back to Home</a>
+      </div>
     </div>
 
   </div>
 
   <script src="js/register.js"></script>
 </body>
-</html>
